@@ -1,5 +1,7 @@
 ### 对hexo进行了样式更改，增加了【文章置顶】【阅读更多】功能
-<h>
+
+---
+  
 <p align="center" class="mb-2">
 <img class="not-gallery-item" height="48" src="https://ppoffice.github.io/hexo-theme-icarus/img/logo.svg">
 <br> A simple, delicate, and modern theme for the static site generator Hexo.
