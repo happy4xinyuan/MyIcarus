@@ -24,7 +24,6 @@ module.exports = class extends Component {
 
         const indexLaunguage = config.language || 'en';
         const language = page.lang || page.language || config.language || 'en';
-
         return <Fragment>
             {/* Main content */}
             <div class="card">
@@ -40,12 +39,18 @@ module.exports = class extends Component {
                 <article class={`card-content article${'direction' in page ? ' ' + page.direction : ''}`} role="article">
                     {page.layout !== 'page' ? <div class="article-meta size-small is-uppercase level is-mobile">
                         <div class="level-left">
-                            {/* Date */}
-                            <time class="level-item" dateTime={date_xml(page.date)} title={date_xml(page.date)}>{date(page.date)}</time>
-                            {/* author */}
-                            {page.author ? <span class="level-item"> {page.author} </span> : null}
-                            {/* Categories */}
-                            {page.categories && page.categories.length ? <span class="level-item">
+                                {/* TOP */}
+                                {page.top ? <i class="level-item fas fa-chevron-left"></i>: null}
+                                {page.top ? <font class="level-item" color="blue"><span>置顶</span></font> : null}
+                                {page.top ? <i class="level-item fas fa-chevron-right"></i>: null}
+                                
+
+                                {/* Date */}
+                                 <time class="level-item" dateTime={date_xml(page.date)} title={date_xml(page.date)}>{date(page.date)}</time>
+                                {/* author */}
+                                {page.author ? <span class="level-item"> {page.author} </span> : null}
+                                {/* Categories */}
+                                {page.categories && page.categories.length ? <span class="level-item">
                                 {(() => {
                                     const categories = [];
                                     page.categories.forEach((category, i) => {
@@ -57,19 +62,19 @@ module.exports = class extends Component {
                                     return categories;
                                 })()}
                             </span> : null}
-                            {/* Read time */}
-                            {article && article.readtime && article.readtime === true ? <span class="level-item">
+                                {/* Read time */}
+                                {article && article.readtime && article.readtime === true ? <span class="level-item">
                                 {(() => {
                                     const words = getWordCount(page._content);
                                     const time = moment.duration((words / 150.0) * 60, 'seconds');
                                     return `${time.locale(index ? indexLaunguage : language).humanize()} ${__('article.read')} (${__('article.about')} ${words} ${__('article.words')})`;
                                 })()}
                             </span> : null}
-                            {/* Visitor counter */}
-                            {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
+                                {/* Visitor counter */}
+                                {!index && plugins && plugins.busuanzi === true ? <span class="level-item" id="busuanzi_container_page_pv" dangerouslySetInnerHTML={{
                                 __html: '<i class="far fa-eye"></i>' + _p('plugin.visit', '&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>')
                             }}></span> : null}
-                        </div>
+</div>
                     </div> : null}
                     {/* Title */}
                     <h1 class="title is-3 is-size-4-mobile">
